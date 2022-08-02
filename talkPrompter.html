@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <style>
+            .line {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 44px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            .back {
+                position: absolute;
+                bottom: 25px;
+                height: 30px;
+                width: 50px;
+            }
+        </style>
+        <script type="text/javascript">
+            const lines = [];
+            lines.push({ wait: false, text: 'Hi Mr. Murray'});
+            lines.push({ wait: true, text: 'Yeah, that makes me happy too.  Do you remember the question I asked you?'});
+            lines.push({ wait: true, text: 'The answer is in Isaiah 55:10, 11.  Could you read that?'});
+            lines.push({ wait: true, text: "So we know rain that leaves the clouds will reach the earth. And we know Jehovah's promises come true"});
+            lines.push({ wait: true, text: 'I learn about the Bible at the Kingdom Hall.  Want to come with me?'});
+            lines.push({ wait: true, text: 'We have a video about that.  Let me show it to you.'});            
+            lines.push({ wait: true, text: 'Ok.  And next time we can talk about the paradise.'});
+
+            let current = -1;
+
+            function next() {
+                if (current < lines.length) {
+                    current++;
+                    const lineEl = document.getElementById('line');
+                    lineEl.innerText = lines[current].text;
+                }                
+            }
+
+            function back(e) {
+                if (current > 0) {
+                    current--;
+                    const lineEl = document.getElementById('line');
+                    lineEl.innerText = lines[current].text;
+                }
+
+                e.preventDefault();
+                e.stopPropagation();
+                return false;                
+            }
+
+        </script>
+    </head>
+    <body onclick="next()">
+        <div id="line" class="line">
+            TAP TO START!
+        </div>
+        <button class="back" onclick="back(event)">BACK</button>
+    </body>
+</html>
